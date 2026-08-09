@@ -1,0 +1,659 @@
+/* ------------------------------------------------------------------ Frame -- */
+
+.phone {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 44px;
+  padding: 9px;
+  background: linear-gradient(158deg, #46463f 0%, #1b1b17 38%, #0c0c0a 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 44px 90px -32px rgba(0, 0, 0, 0.92),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.phoneTall {
+  max-width: 300px;
+  aspect-ratio: 9 / 18.6;
+}
+
+.phoneMid {
+  max-width: 300px;
+  aspect-ratio: 9 / 18;
+}
+
+.screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--palette-near-black);
+  color: var(--palette-bone);
+  isolation: isolate;
+}
+
+/* ------------------------------------------------------------- Status bar -- */
+
+.statusBar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px 4px;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.clock {
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74px;
+  height: 20px;
+  border-radius: 999px;
+  background: #000;
+}
+
+.indicators {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.statusGlyph {
+  height: 9px;
+  width: auto;
+}
+
+/* --------------------------------------------------------- App chrome (1) -- */
+
+.appBar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px 0;
+  flex-shrink: 0;
+}
+
+.appMark {
+  width: 76px;
+  color: var(--palette-bone);
+}
+
+.appIcon {
+  width: 17px;
+  height: 17px;
+  color: var(--palette-bone);
+}
+
+.tabs {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  gap: 18px;
+  padding: 10px 16px 8px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tab {
+  color: rgba(244, 240, 232, 0.5);
+}
+
+.tabActive {
+  position: relative;
+  color: var(--palette-bone);
+}
+
+.tabActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--palette-gold);
+}
+
+/* -------------------------------------------------------------- Stage (1) -- */
+
+.stage {
+  position: relative;
+  flex: 1;
+  margin: 6px 8px 8px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.stageScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 15, 0.22) 0%,
+    rgba(17, 17, 15, 0) 26%,
+    rgba(17, 17, 15, 0) 42%,
+    rgba(17, 17, 15, 0.88) 100%
+  );
+}
+
+.verse {
+  position: absolute;
+  top: 15%;
+  left: 14px;
+  right: 62px;
+  margin: 0;
+  padding: 14px 10px;
+  text-align: center;
+}
+
+/*
+ * Scripture is set over the brightest part of the frame, where neither bone nor gold
+ * survives on its own. This soft scrim is what makes the overlay legible regardless of
+ * what the video behind it is doing — the same reason the reaction rail has one.
+ */
+.verse::before {
+  content: "";
+  position: absolute;
+  inset: -6px -10px;
+  border-radius: 18px;
+  background: radial-gradient(70% 100% at 50% 50%, rgba(17, 17, 15, 0.62) 0%, transparent 78%);
+}
+
+.verse > * {
+  position: relative;
+}
+
+.verseText {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.verseRef {
+  font-size: 8.5px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  /* The raised gold, not the brand gold — this sits on an elevated, lit surface. */
+  color: var(--palette-gold-raised);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+
+/* --------------------------------------------------------- Reaction rail -- */
+
+.rail {
+  position: absolute;
+  right: 10px;
+  bottom: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.railItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.railWell {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  background: rgba(17, 17, 15, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(244, 240, 232, 0.12);
+  color: var(--palette-bone);
+}
+
+.railIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.railXo {
+  width: 21px;
+  height: 12px;
+}
+
+.railCount {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(244, 240, 232, 0.9);
+}
+
+/* Share is the one action that carries something outward, so it is the only
+   coloured well in the rail. */
+.share .railWell {
+  background: var(--palette-gold);
+  border-color: transparent;
+  color: var(--palette-near-black);
+}
+
+/* ------------------------------------------------------------- Creator (1) */
+
+.creatorBar {
+  position: absolute;
+  left: 14px;
+  right: 62px;
+  bottom: 44px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  border: 1px solid rgba(244, 240, 232, 0.35);
+}
+
+.avatarSm {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.avatarA { background: linear-gradient(140deg, #c98f4a, #6b4a2c); }
+.avatarB { background: linear-gradient(140deg, #a8748a, #5c3c4a); }
+.avatarC { background: linear-gradient(140deg, #6e8a7a, #35473d); }
+.avatarD { background: linear-gradient(140deg, #b98d6a, #6a4b34); }
+.avatarE { background: linear-gradient(140deg, #7c8aa0, #3d4756); }
+.avatarF { background: linear-gradient(140deg, #a99a6a, #5c5237); }
+
+.creatorHandle {
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.followBtn {
+  margin-left: auto;
+  padding: 4px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 240, 232, 0.55);
+  font-size: 9.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.stageCaption {
+  position: absolute;
+  left: 14px;
+  right: 62px;
+  bottom: 14px;
+  margin: 0;
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: rgba(244, 240, 232, 0.9);
+}
+
+.hashtag {
+  color: var(--palette-gold);
+}
+
+/* ------------------------------------------------------------- Feed (2) --- */
+
+.chipRow {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.chip,
+.chipActive {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chip {
+  color: rgba(244, 240, 232, 0.55);
+  border: 1px solid rgba(244, 240, 232, 0.14);
+}
+
+.chipActive {
+  background: var(--palette-bone);
+  color: var(--palette-near-black);
+}
+
+.post {
+  padding: 0 14px 14px;
+  border-bottom: 1px solid rgba(244, 240, 232, 0.08);
+}
+
+.postHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.postWho {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.postName {
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.postPlace {
+  font-size: 9px;
+  color: rgba(244, 240, 232, 0.5);
+}
+
+.postTime {
+  margin-left: auto;
+  font-size: 9.5px;
+  color: rgba(244, 240, 232, 0.5);
+}
+
+.postMenu {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(244, 240, 232, 0.5);
+}
+
+.postBody {
+  margin: 0 0 9px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(244, 240, 232, 0.92);
+}
+
+.postMedia {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.playWell {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(17, 17, 15, 0.45);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(244, 240, 232, 0.28);
+}
+
+.playIcon {
+  width: 15px;
+  height: 15px;
+  color: var(--palette-bone);
+  margin-left: 2px;
+}
+
+.reactionRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: rgba(244, 240, 232, 0.82);
+}
+
+.inlineIcon {
+  width: 13px;
+  height: 13px;
+}
+
+.inlineXo {
+  width: 16px;
+  height: 9px;
+}
+
+.inlineLabel {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.inlineCount {
+  font-variant-numeric: tabular-nums;
+  color: rgba(244, 240, 232, 0.62);
+}
+
+.reactionRow .share {
+  margin-left: auto;
+}
+
+/* ------------------------------------------------------------- Live (3) --- */
+
+.liveBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 8px;
+  flex-shrink: 0;
+}
+
+.liveTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.liveDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--palette-gold);
+}
+
+.viewers {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: rgba(244, 240, 232, 0.85);
+}
+
+.recDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #e0554b;
+}
+
+.liveStage {
+  position: relative;
+  margin: 0 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  flex-shrink: 0;
+}
+
+.liveScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(17, 17, 15, 0.6) 100%);
+}
+
+.liveMeta {
+  padding: 12px 16px 8px;
+  flex-shrink: 0;
+}
+
+.liveHeading {
+  margin: 0 0 3px;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.liveHost {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  font-size: 10px;
+  color: rgba(244, 240, 232, 0.6);
+}
+
+.verified {
+  width: 11px;
+  height: 11px;
+  color: var(--palette-gold);
+}
+
+.comments {
+  list-style: none;
+  margin: 0;
+  padding: 4px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.commentBody {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.commentHandle {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: rgba(244, 240, 232, 0.95);
+}
+
+.commentText {
+  font-size: 10px;
+  line-height: 1.35;
+  color: rgba(244, 240, 232, 0.66);
+}
+
+.commentInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px 14px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 240, 232, 0.14);
+  background: rgba(244, 240, 232, 0.05);
+  flex-shrink: 0;
+}
+
+.commentPlaceholder {
+  font-size: 10.5px;
+  color: rgba(244, 240, 232, 0.45);
+}
+
+.sendIcon {
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+  color: rgba(244, 240, 232, 0.7);
+}
+
+/* ------------------------------------------------------- Image treatments --
+ *
+ * Placeholders for real photography. Each is one class — swap the background for a
+ * real still and nothing else changes.
+ */
+
+/* Surfer at sunrise, water like glass. */
+.shotSurfer {
+  background:
+    linear-gradient(to bottom, transparent 62%, rgba(17, 17, 15, 0.45) 66%, transparent 70%),
+    radial-gradient(34% 16% at 50% 60%, #ffe0ad 0%, #e8a052 42%, transparent 74%),
+    linear-gradient(
+      to bottom,
+      #7d5330 0%,
+      #b8783a 26%,
+      #e09a45 52%,
+      #6d4d2f 66%,
+      #2a1f18 84%,
+      #14120f 100%
+    );
+}
+
+/* Three people talking, warm interior light. */
+.shotFamily {
+  background:
+    radial-gradient(46% 40% at 62% 26%, #e8c8a4 0%, #a07f66 46%, transparent 78%),
+    linear-gradient(160deg, #6b5648 0%, #4a3b33 44%, #26201c 100%);
+}
+
+/* City at dusk. */
+.shotCity {
+  background:
+    linear-gradient(to bottom, #2c3a4c 0%, #4a5468 34%, #2a2f3a 62%, #15171c 100%),
+    radial-gradient(40% 24% at 74% 22%, #d7a86e 0%, transparent 70%);
+}
+
+/* Speaker at a mic under stage light. */
+.shotSpeaker {
+  background:
+    radial-gradient(38% 46% at 46% 30%, #f0d4a8 0%, #9a7458 44%, transparent 76%),
+    linear-gradient(168deg, #3a3128 0%, #241d19 48%, #121110 100%);
+}
