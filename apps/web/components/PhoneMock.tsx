@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { formatCount } from "@xoholy/shared";
 
 import {
@@ -71,6 +73,13 @@ export function ForYouScreen() {
       </nav>
 
       <div className={`${s.stage} ${s.shotSurfer}`}>
+        <Image
+          src="/images/creator-ocean.png"
+          alt=""
+          fill
+          sizes="300px"
+          className={s.mediaImage}
+        />
         <div className={s.stageScrim} />
 
         <blockquote className={s.verse}>
@@ -146,6 +155,13 @@ export function FeedScreen() {
         </p>
 
         <div className={`${s.postMedia} ${s.shotFamily}`}>
+          <Image
+            src="/images/community-gathering.png"
+            alt=""
+            fill
+            sizes="280px"
+            className={s.mediaImage}
+          />
           <span className={s.playWell}>
             <PlayMark className={s.playIcon} />
           </span>
@@ -200,7 +216,7 @@ function InlineReaction({
 /** Live — stream, title, and the running comment rail. */
 export function LiveScreen() {
   const comments = [
-    { handle: "grace.upoonus", body: "This hit deep. Thank you brother 🙏", avatar: s.avatarD },
+    { handle: "grace.upoonus", body: "This hit deep. Thank you for sharing 🙏", avatar: s.avatarD },
     { handle: "kingdom.movement", body: "Needed this today.", avatar: s.avatarE },
     { handle: "light.in.the.city", body: "So good! 🔥", avatar: s.avatarF },
   ];
@@ -218,13 +234,20 @@ export function LiveScreen() {
       </div>
 
       <div className={`${s.liveStage} ${s.shotSpeaker}`}>
+        <Image
+          src="/images/creator-live.png"
+          alt=""
+          fill
+          sizes="280px"
+          className={s.mediaImage}
+        />
         <div className={s.liveScrim} />
       </div>
 
       <div className={s.liveMeta}>
         <p className={s.liveHeading}>Q&amp;A: Faith, purpose and the real life</p>
         <p className={s.liveHost}>
-          with @jakelawson <VerifiedMark className={s.verified} />
+          with @maria.santos <VerifiedMark className={s.verified} />
         </p>
       </div>
 

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import {
   AmenMark,
   ArrowMark,
@@ -180,6 +182,16 @@ export default function Home() {
             </div>
 
             <div className={styles.builtRight} id="mission">
+              <figure className={styles.missionPhoto}>
+                <Image
+                  src="/images/community-gathering.png"
+                  alt="Friends gathered in conversation after sharing a meal"
+                  fill
+                  sizes="(min-width: 1180px) 24vw, 100vw"
+                  className={styles.missionPhotoImage}
+                />
+                <figcaption>Faith is lived together.</figcaption>
+              </figure>
               <p className={styles.missionEyebrow}>Our mission</p>
               <h2 className={styles.missionTitle}>
                 To see a generation connected through truth, love and the gospel.

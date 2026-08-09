@@ -141,6 +141,19 @@
   overflow: hidden;
 }
 
+.mediaImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.stage .mediaImage {
+  object-position: 46% center;
+}
+
+.liveStage .mediaImage {
+  object-position: 44% 28%;
+}
+
 .stageScrim {
   position: absolute;
   inset: 0;

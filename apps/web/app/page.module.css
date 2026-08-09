@@ -466,6 +466,41 @@
   max-width: 40ch;
 }
 
+.missionPhoto {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 0 0 var(--space-xl);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: 0 24px 60px -34px rgba(17, 17, 15, 0.58);
+}
+
+.missionPhoto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(17, 17, 15, 0.82), transparent 52%);
+}
+
+.missionPhotoImage {
+  object-fit: cover;
+  object-position: 62% center;
+  filter: saturate(0.82) contrast(1.04);
+}
+
+.missionPhoto figcaption {
+  position: absolute;
+  z-index: 1;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--palette-bone);
+}
+
 .missionEyebrow {
   margin: 0 0 var(--space-md);
   font-size: var(--font-size-caption);
