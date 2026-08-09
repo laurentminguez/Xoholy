@@ -178,9 +178,8 @@
   margin-left: 2px;
 }
 
-/* Headline figures. See the note in page.tsx — these are placeholders and must not
-   ship as-is on a live site. */
-.stats {
+/* Honest launch principles in place of fictional traction figures. */
+.principles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-lg) var(--space-lg);
@@ -188,66 +187,49 @@
 }
 
 @media (min-width: 620px) {
-  .stats {
+  .principles {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-/* Column separation comes from the grid gap, not from per-item padding. An earlier
-   `.stat + .stat { padding-left }` indented every item after the first, which in the
-   2-column mobile layout misaligned the whole second row. */
-.stat {
+/* Column separation comes from the grid gap so both mobile rows stay aligned. */
+.principle {
   padding-right: var(--space-md);
   border-right: 1px solid rgba(244, 240, 232, 0.14);
 }
 
 /* Two columns: the rule belongs after the first item of each row only. */
-.stat:nth-child(2n) {
+.principle:nth-child(2n) {
   border-right: 0;
 }
 
 @media (min-width: 620px) {
-  .stat:nth-child(2n) {
+  .principle:nth-child(2n) {
     border-right: 1px solid rgba(244, 240, 232, 0.14);
   }
-  .stat:last-child {
+  .principle:last-child {
     border-right: 0;
   }
 }
 
-.statLabel {
+.principleValue {
   margin: 0 0 8px;
-  /* Reserve two lines. "A global community" wraps at some widths and the others do not,
-     which otherwise drops that column's figure out of line with the rest of the row. */
-  min-height: 2.8em;
-  font-size: 9.5px;
-  font-weight: 600;
+  /* Reserve two lines so all four supporting details begin on the same baseline. */
+  min-height: 2.6em;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(244, 240, 232, 0.5);
 }
 
-.statValue {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.principleDetail {
   margin: 0;
   font-family: var(--font-ui);
-  font-size: clamp(24px, 2.4vw, 32px);
-  font-weight: var(--font-weight-black);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  color: var(--palette-bone);
-}
-
-.statUnit {
-  font-family: var(--font-ui);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(244, 240, 232, 0.5);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(244, 240, 232, 0.62);
 }
 
 /* --- Hero media ------------------------------------------------------------ */

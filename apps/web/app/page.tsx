@@ -5,7 +5,6 @@ import {
   InstagramMark,
   PlayMark,
   PrayMark,
-  SearchMark,
   ShareMark,
   TiktokMark,
   VerifiedMark,
@@ -27,21 +26,18 @@ import styles from "./page.module.css";
  * is "what is this?" then "I want to be part of this", not a features list.
  */
 
-const NAV = ["Home", "Explore", "Creators", "Live", "About"] as const;
+const NAV = [
+  { label: "Home", href: "#top" },
+  { label: "Experience", href: "#product" },
+  { label: "Vocabulary", href: "#interactions" },
+  { label: "Mission", href: "#mission" },
+] as const;
 
-/**
- * Headline figures.
- *
- * IMPORTANT: these are placeholders from the design comp and XOholy has not launched.
- * Publishing invented community numbers on a live site is a straightforward
- * misrepresentation, so this block must either carry real figures or be removed before
- * the site goes public. It is a single array so that removing it is one edit.
- */
-const STATS = [
-  { label: "A global community", value: "1.2M+", unit: "People" },
-  { label: "Content shared", value: "24M+", unit: "Posts" },
-  { label: "Prayer lifted", value: "8.7M+", unit: "Prayers" },
-  { label: "Lives impacted", value: "∞", unit: "And counting" },
+const PRINCIPLES = [
+  { value: "Real faith", detail: "No performance required" },
+  { value: "Real people", detail: "Creators keep the credit" },
+  { value: "Real care", detail: "Prayer stays personal" },
+  { value: "Built with purpose", detail: "Not for empty attention" },
 ] as const;
 
 const FEATURES = [
@@ -74,7 +70,7 @@ const FEATURES = [
 export default function Home() {
   return (
     <>
-      <header className={styles.nav}>
+      <header id="top" className={styles.nav}>
         <div className={styles.navInner}>
           <a href="/" aria-label="XOholy home">
             <Wordmark className={styles.navMark} />
@@ -82,21 +78,15 @@ export default function Home() {
 
           <nav className={styles.navLinks} aria-label="Primary">
             {NAV.map((item, i) => (
-              <a key={item} href="#" className={i === 0 ? styles.navLinkActive : undefined}>
-                {item}
+              <a key={item.label} href={item.href} className={i === 0 ? styles.navLinkActive : undefined}>
+                {item.label}
               </a>
             ))}
           </nav>
 
           <div className={styles.navActions}>
-            <button type="button" className={styles.iconBtn} aria-label="Search">
-              <SearchMark className={styles.navIcon} />
-            </button>
-            <a href="#" className={styles.logIn}>
-              Log in
-            </a>
             <a className="btn btn-primary" href="#join">
-              Join XOholy
+              Get early access
             </a>
           </div>
         </div>
@@ -130,14 +120,11 @@ export default function Home() {
               </a>
             </div>
 
-            <dl className={styles.stats}>
-              {STATS.map((stat) => (
-                <div key={stat.label} className={styles.stat}>
-                  <dt className={styles.statLabel}>{stat.label}</dt>
-                  <dd className={styles.statValue}>
-                    {stat.value}
-                    <span className={styles.statUnit}>{stat.unit}</span>
-                  </dd>
+            <dl className={styles.principles} aria-label="What XOholy stands for">
+              {PRINCIPLES.map((principle) => (
+                <div key={principle.value} className={styles.principle}>
+                  <dt className={styles.principleValue}>{principle.value}</dt>
+                  <dd className={styles.principleDetail}>{principle.detail}</dd>
                 </div>
               ))}
             </dl>
@@ -230,7 +217,7 @@ export default function Home() {
                   <XoMark className={styles.cardXoMark} />
                 </span>
                 <h3 className="display-sm">XO</h3>
-                <p className={styles.cardCount}>12.4K XO</p>
+                <p className={styles.cardCount}>Love in action</p>
                 <p className={styles.cardBody}>
                   Love. Support. Encourage. The one you&rsquo;ll reach for most, and the
                   signal that carries the most weight in what you get shown next.
@@ -242,7 +229,7 @@ export default function Home() {
                   <AmenMark className={styles.cardMark} />
                 </span>
                 <h3 className="display-sm">Amen</h3>
-                <p className={styles.cardCount}>8.2K AMENS</p>
+                <p className={styles.cardCount}>Agreement, not influence</p>
                 <p className={styles.cardBody}>
                   Agreement. So be it. <strong>Amen has no effect on reach</strong> — by
                   design, and enforced in code. The moment affirmation buys distribution,
@@ -255,11 +242,10 @@ export default function Home() {
                   <PrayMark className={styles.cardMark} />
                 </span>
                 <h3 className="display-sm">Pray</h3>
-                <p className={styles.cardCount}>3,842 PRAYING</p>
+                <p className={styles.cardCount}>A private commitment</p>
                 <p className={styles.cardBody}>
-                  Not 3,842 likes. Three thousand eight hundred and forty-two people
-                  actually praying. Save any request to a private list that is between
-                  you and God.
+                  More than a reaction: a commitment to actually pray. Save any request
+                  to a private list that stays between you and God.
                 </p>
               </article>
             </div>
