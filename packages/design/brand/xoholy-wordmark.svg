@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 415 142" role="img" aria-label="XOholy">
+  <title>XOholy</title>
+  <!--
+    XOholy wordmark.
+
+    Drawn as pure geometry, not type, so it renders identically everywhere with no font
+    dependency and no licensing question.
+
+    Hierarchy: XO is heavy, full cap height, and occupies 202 of the 395 units of width.
+    "holy" is set at 78% scale on the same baseline at a third of the stroke weight, so it
+    reads as a quieter second element rather than an equal partner. XO has to be able to
+    stand alone eventually — the lockup is built so that removing "holy" costs the mark
+    nothing.
+
+    The X: its strokes are narrower at the top than at the bottom, so they cross at
+    y=42.6 rather than at the 50 midline. That above-centre crossing is the proportion of
+    a Latin cross. It reads as an X first — the cross is in the skeleton, discovered
+    rather than announced, which is what the brief asks for.
+
+    The O: a true circle. Wholeness, eternity, community, connection.
+  -->
+
+  <!-- XO — the icon -->
+  <g fill="currentColor">
+    <path d="M 8,0 L 34,0 L 88,100 L 62,100 Z" />
+    <path d="M 54,0 L 80,0 L 26,100 L 0,100 Z" />
+  </g>
+  <circle cx="152" cy="50" r="39" fill="none" stroke="currentColor" stroke-width="22" />
+
+  <!-- holy — 78% scale, light weight, same baseline -->
+  <g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="butt">
+    <!-- h -->
+    <path d="M 239,22 L 239,100" />
+    <path d="M 239,64 C 239,51 272,51 272,64 L 272,100" />
+    <!-- o -->
+    <circle cx="305" cy="76" r="20" />
+    <!-- l -->
+    <path d="M 340,22 L 340,100" />
+    <!-- y — arms meet at (373,94), the right one continuing straight into the descender -->
+    <path d="M 355,52 L 373,94" />
+    <path d="M 391,52 L 364,116" />
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="XOholy">
+  <title>XOholy</title>
+  <!--
+    XOholy app icon.
+
+    Just XO — no cross, no dove, no Bible, no church iconography. The goal is iconic
+    rather than explanatory: a mark that sits on a home screen beside TikTok, Spotify
+    and Instagram without announcing itself as a religious app.
+
+    Geometry is identical to the wordmark, scaled 3.6x and centred, so the icon and the
+    logo are demonstrably the same mark rather than two drawings that resemble each other.
+  -->
+  <rect width="1024" height="1024" fill="#11110F" />
+  <g transform="translate(148, 332) scale(3.6)">
+    <g fill="#F4F0E8">
+      <path d="M 8,0 L 34,0 L 88,100 L 62,100 Z" />
+      <path d="M 54,0 L 80,0 L 26,100 L 0,100 Z" />
+    </g>
+    <circle cx="152" cy="50" r="39" fill="none" stroke="#F4F0E8" stroke-width="22" />
+  </g>
+</svg>

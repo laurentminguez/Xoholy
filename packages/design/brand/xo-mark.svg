@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 214 112" role="img" aria-label="XOholy">
+  <title>XOholy</title>
+  <!--
+    The standalone XO mark — no background, inherits currentColor.
+
+    Use in the app's nav bar, as a watermark on shared posts, and anywhere the full
+    wordmark is too wide. The brief's endgame is that XO becomes recognizable without
+    the word "holy"; this is that mark, and it is the exact geometry used in the
+    wordmark and the app icon.
+  -->
+  <g fill="currentColor">
+    <path d="M 8,0 L 34,0 L 88,100 L 62,100 Z" />
+    <path d="M 54,0 L 80,0 L 26,100 L 0,100 Z" />
+  </g>
+  <circle cx="152" cy="50" r="39" fill="none" stroke="currentColor" stroke-width="22" />
+</svg>
