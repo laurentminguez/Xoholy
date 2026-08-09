@@ -138,7 +138,14 @@ export const light = {
   pray: interaction.prayOnLight,
 } as const;
 
-export type SemanticColors = typeof dark;
+/**
+ * The shape of a surface's semantic palette.
+ *
+ * Mapped to `string` rather than left as `typeof dark`, which would infer literal hex
+ * types and then reject `light` for having different values — the two surfaces must
+ * share a shape, not a palette.
+ */
+export type SemanticColors = { [K in keyof typeof dark]: string };
 export type Surface = "dark" | "light";
 
 export const surfaces: Record<Surface, SemanticColors> = { dark, light };

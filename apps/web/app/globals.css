@@ -63,9 +63,8 @@ a {
 .hero-type {
   font-family: var(--font-display);
   font-size: var(--font-size-hero-fluid);
-  font-weight: var(--font-weight-black);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tighter);
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
   text-transform: uppercase;
   margin: 0;
 }
@@ -73,9 +72,8 @@ a {
 .display-type {
   font-family: var(--font-display);
   font-size: var(--font-size-display-fluid);
-  font-weight: var(--font-weight-black);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tighter);
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
   text-transform: uppercase;
   margin: 0;
 }
@@ -83,9 +81,9 @@ a {
 .display-sm {
   font-family: var(--font-display);
   font-size: var(--font-size-display-sm-fluid);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
+  line-height: var(--display-leading);
+  letter-spacing: var(--display-tracking);
+  text-transform: uppercase;
   margin: 0;
 }
 

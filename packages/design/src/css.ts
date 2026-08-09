@@ -9,7 +9,7 @@
  */
 
 import { palette, derived, dark, light, type SemanticColors } from "./color.ts";
-import { fontStack, fontSize, fontWeight, lineHeight, letterSpacing, fluidSize } from "./typography.ts";
+import { fontStack, fontSize, fontWeight, lineHeight, letterSpacing, displayMetrics, fluidSize } from "./typography.ts";
 import { space, radius, layout, minTouchTarget } from "./space.ts";
 import { duration, cssEasing } from "./motion.ts";
 
@@ -65,6 +65,8 @@ ${paletteVars}
   /* Type */
   --font-display: ${fontStack.display};
   --font-ui: ${fontStack.ui};
+  --display-leading: ${displayMetrics.leading};
+  --display-tracking: ${displayMetrics.tracking};
 ${sizeVars}
 ${weightVars}
 ${leadingVars}

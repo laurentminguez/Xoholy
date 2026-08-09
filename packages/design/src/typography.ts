@@ -1,29 +1,47 @@
 /**
  * XOholy typography.
  *
- * The brand lives in the tension between bold editorial culture and clean modern
- * technology. Headlines are oversized, heavy, confident, tightly tracked. UI type is
- * quiet and extremely readable. The result should read as a global media company,
- * not a ministry.
+ * Three faces, three jobs, and the contrast between them is the point.
  *
- * Display — Archivo. Variable, with both condensed and expanded axes, which is what
- * gives the oversized editorial range. The reference look for this category is Druk;
- * Archivo gets close and is free, so nothing here is blocked on a license purchase.
+ * WORDMARK — Inter Black 900 (XO) + Inter Light 300 (holy).
+ *   Not listed as a font stack below, because the wordmark is never set as live text.
+ *   It ships as outlined paths (see packages/design/src/wordmark-paths.ts) so it cannot
+ *   fall back to another face, and so the XO carries editable geometry for the custom
+ *   proprietary version. Inter is where the mark begins, not where it stays.
+ *
+ * DISPLAY — Anton. Condensed, heavy, editorial; the register of a fashion or media
+ *   masthead rather than a ministry. Reserved for the giant uppercase headlines
+ *   (SOCIAL MEDIA CAN BE HOLY). Deliberately a *different* face from the wordmark:
+ *   a clean modern wordmark against a condensed editorial headline is the contrast that
+ *   makes the page work, and setting both in the same face flattens it. The paid
+ *   reference for this category is Druk; Anton is the closest free analogue, so nothing
+ *   is blocked on a licence purchase.
  *
  * UI — Inter. Variable, unmatched at small sizes, and its tabular figures matter more
- * than they sound: every feed cell renders counts like `12.4K XO` and `3,842 PRAYING`,
- * and proportional digits make those numbers jitter as they increment.
+ *   than they sound: every feed cell renders counts like `12.4K XO` and `3,842 PRAYING`,
+ *   and proportional digits make those numbers jitter as they increment.
  */
 
 export const fontFamily = {
-  display: "Archivo",
+  display: "Anton",
   ui: "Inter",
+  /** Reference only — the wordmark ships outlined, never set live. */
+  wordmark: "Inter",
 } as const;
 
 /** Web font stacks with system fallbacks that fail gracefully before the webfont loads. */
 export const fontStack = {
-  display: `"Archivo", "Archivo Expanded", "Helvetica Neue", Helvetica, Arial, sans-serif`,
+  display: `"Anton", "Archivo Narrow", "Helvetica Neue Condensed", Impact, "Arial Narrow", sans-serif`,
   ui: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`,
+} as const;
+
+/**
+ * The wordmark specification, kept here so the value is documented in one place even
+ * though the mark is rendered from outlines rather than from these numbers.
+ */
+export const wordmarkSpec = {
+  xo: { family: "Inter", weight: 900, trackingEm: -0.05 },
+  holy: { family: "Inter", weight: 300, trackingEm: -0.02 },
 } as const;
 
 export const fontWeight = {
@@ -60,6 +78,19 @@ export const lineHeight = {
   relaxed: 1.6,
 } as const;
 
+/**
+ * Metrics for the display face specifically.
+ *
+ * Anton is already condensed and very tightly fitted, so the negative tracking that
+ * flatters a normal-width grotesque collapses its letters into each other. Its caps are
+ * also tall relative to the em, so sub-1.0 leading overlaps consecutive lines. These are
+ * the values the display face wants; the generic tokens below are for everything else.
+ */
+export const displayMetrics = {
+  leading: 1.0,
+  tracking: "0em",
+} as const;
+
 /** Negative tracking on large type, positive on small caps — standard editorial practice. */
 export const letterSpacing = {
   tighter: "-0.04em",
@@ -87,29 +118,32 @@ export const textStyle = {
   hero: {
     fontFamily: fontStack.display,
     fontSize: fontSize.display1,
-    fontWeight: fontWeight.black,
-    lineHeight: lineHeight.tight,
-    letterSpacing: letterSpacing.tighter,
+    fontWeight: fontWeight.regular, // Anton ships one weight; it is black by design.
+    lineHeight: displayMetrics.leading,
+    letterSpacing: displayMetrics.tracking,
     textTransform: "uppercase",
   },
   /** Section openers — `A GENERATION CONNECTED THROUGH TRUTH, LOVE & THE GOSPEL.` */
   display: {
     fontFamily: fontStack.display,
     fontSize: fontSize.display2,
-    fontWeight: fontWeight.black,
-    lineHeight: lineHeight.tight,
-    letterSpacing: letterSpacing.tighter,
+    fontWeight: fontWeight.regular,
+    lineHeight: displayMetrics.leading,
+    letterSpacing: displayMetrics.tracking,
     textTransform: "uppercase",
   },
   displaySm: {
     fontFamily: fontStack.display,
     fontSize: fontSize.display3,
-    fontWeight: fontWeight.bold,
-    lineHeight: lineHeight.snug,
-    letterSpacing: letterSpacing.tight,
+    fontWeight: fontWeight.regular,
+    lineHeight: displayMetrics.leading,
+    letterSpacing: displayMetrics.tracking,
+    textTransform: "uppercase",
   },
+  /* Mid-size headings stay in Inter — Anton is reserved for the giant uppercase
+     headlines, and at 32px its condensed forms read as shouting rather than editorial. */
   headline: {
-    fontFamily: fontStack.display,
+    fontFamily: fontStack.ui,
     fontSize: fontSize.headline,
     fontWeight: fontWeight.bold,
     lineHeight: lineHeight.snug,

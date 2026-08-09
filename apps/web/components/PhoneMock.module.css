@@ -182,7 +182,7 @@
 
 .verseText {
   margin: 0 0 8px;
-  font-family: var(--font-display);
+  font-family: var(--font-ui);
   font-size: 15px;
   font-weight: 600;
   line-height: 1.32;
@@ -239,7 +239,7 @@
 
 .railXo {
   width: 21px;
-  height: 11px;
+  height: 12px;
 }
 
 .railCount {
@@ -455,7 +455,7 @@
 
 .inlineXo {
   width: 16px;
-  height: 8px;
+  height: 9px;
 }
 
 .inlineLabel {

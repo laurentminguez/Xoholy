@@ -1,50 +1,65 @@
+import {
+  HOLY_PATHS,
+  MARK_VIEWBOX,
+  WORDMARK_VIEWBOX,
+  XO_PATHS,
+} from "@xoholy/design";
+
 /**
  * Brand and interface marks as inline SVG.
  *
- * Brand geometry is copied from packages/design/brand — inline here so the marketing
- * site has no image requests in its critical path, and so every mark inherits
- * `currentColor` from whatever surface it sits on.
+ * The wordmark renders from the outlines in @xoholy/design, which are generated from
+ * Inter by packages/design/brand/generate-wordmark.py — XO in Black 900 at -5% tracking,
+ * holy in Light 300 at -2%. Rendering from the shared module rather than a pasted copy
+ * means the site and the exported SVG files cannot drift after a regeneration.
+ *
+ * Everything is inline so the marketing site makes no image request in its critical
+ * path, and every mark inherits `currentColor` from whatever surface it sits on.
  */
 
 type IconProps = { className?: string };
 
 /* -------------------------------------------------------------------- Brand -- */
 
+/**
+ * The full lockup.
+ *
+ * The two runs stay in separate groups tagged `data-part`, so a treatment can colour the
+ * XO independently — the gold-XO-on-black variant is a CSS rule, not a second asset.
+ */
 export function Wordmark({ className }: IconProps) {
   return (
     <svg
-      viewBox="-10 -10 415 142"
+      viewBox={WORDMARK_VIEWBOX}
       className={className}
       role="img"
       aria-label="XOholy"
-      fill="none"
+      fill="currentColor"
     >
-      <g fill="currentColor">
-        <path d="M 8,0 L 34,0 L 88,100 L 62,100 Z" />
-        <path d="M 54,0 L 80,0 L 26,100 L 0,100 Z" />
+      <g data-part="xo">
+        {XO_PATHS.map((d) => (
+          <path key={d.slice(0, 24)} d={d} />
+        ))}
       </g>
-      <circle cx="152" cy="50" r="39" stroke="currentColor" strokeWidth="22" />
-      <g stroke="currentColor" strokeWidth="9">
-        <path d="M 239,22 L 239,100" />
-        <path d="M 239,64 C 239,51 272,51 272,64 L 272,100" />
-        <circle cx="305" cy="76" r="20" />
-        <path d="M 340,22 L 340,100" />
-        <path d="M 355,52 L 373,94" />
-        <path d="M 391,52 L 364,116" />
+      <g data-part="holy">
+        {HOLY_PATHS.map((d) => (
+          <path key={d.slice(0, 24)} d={d} />
+        ))}
       </g>
     </svg>
   );
 }
 
-/** The standalone XO. Doubles as the XO interaction icon. */
+/**
+ * The standalone XO — nav bars, watermarks, and the XO interaction icon.
+ * The brief's endgame is that this reads as XOholy with no wordmark attached.
+ */
 export function XoMark({ className }: IconProps) {
   return (
-    <svg viewBox="-6 -6 214 112" className={className} aria-hidden="true" fill="none">
-      <g fill="currentColor">
-        <path d="M 8,0 L 34,0 L 88,100 L 62,100 Z" />
-        <path d="M 54,0 L 80,0 L 26,100 L 0,100 Z" />
-      </g>
-      <circle cx="152" cy="50" r="39" stroke="currentColor" strokeWidth="22" />
+    <svg viewBox={MARK_VIEWBOX} className={className} aria-hidden="true" fill="currentColor">
+      {XO_PATHS.map((d) => (
+        <path key={d.slice(0, 24)} d={d} />
+      ))}
     </svg>
   );
 }

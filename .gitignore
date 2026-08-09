@@ -24,3 +24,6 @@ Thumbs.db
 
 supabase/.temp/
 supabase/.branches/
+
+# Fonts fetched on demand by packages/design/brand/generate-wordmark.py
+packages/design/brand/.fonts/

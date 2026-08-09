@@ -11,6 +11,7 @@ export * from "./typography.ts";
 export * from "./space.ts";
 export * from "./motion.ts";
 export * from "./contrast.ts";
+export * from "./wordmark-paths.ts";
 export { tokensCss } from "./css.ts";
 
 import { surfaces, type Surface } from "./color.ts";
