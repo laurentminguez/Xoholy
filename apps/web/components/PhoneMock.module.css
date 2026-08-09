@@ -1,0 +1,231 @@
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: 268px;
+  /* Shorter than a real handset on purpose: at true 9/19.5 the cell is so tall that a
+     page can only ever show its top third, which hides the caption and the reaction
+     rail — the two things a visitor most needs to see. */
+  aspect-ratio: 9 / 17.5;
+  border-radius: 38px;
+  padding: 7px;
+  background: linear-gradient(160deg, #3a3a35, #161613 40%);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.06) inset,
+    0 40px 80px -30px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/*
+ * Placeholder treatments standing in for cinematic photography. Abstract on purpose —
+ * generic worship stock is explicitly off-brand, so these read as "frame of video"
+ * without pretending to be a photograph.
+ */
+/* Sunrise over water — warm, high-contrast, with a horizon band so the frame reads as
+   a photograph rather than a wash. */
+.treatment1 {
+  background:
+    linear-gradient(to bottom, transparent 52%, rgba(17, 17, 15, 0.5) 56%, transparent 60%),
+    radial-gradient(38% 22% at 52% 50%, #ffd9a0 0%, #e59a4a 40%, transparent 72%),
+    linear-gradient(
+      to bottom,
+      #6d4a2a 0%,
+      #b06f34 30%,
+      #e0913f 48%,
+      #7a5330 58%,
+      #2a1f18 78%,
+      #11110f 100%
+    );
+}
+
+/* Evening field — cooler, greener, light falling from the upper right. */
+.treatment2 {
+  background:
+    radial-gradient(50% 30% at 74% 16%, #e8dcae 0%, #93a06a 42%, transparent 74%),
+    linear-gradient(
+      to bottom,
+      #48533a 0%,
+      #6d7a4e 26%,
+      #4f5a3a 52%,
+      #2b3123 74%,
+      #11110f 100%
+    );
+}
+
+/* Interior, low light — the "filmed in a car at midnight" register the brief asks for. */
+.treatment3 {
+  background:
+    radial-gradient(44% 26% at 38% 30%, #f0cfae 0%, #9b6f66 44%, transparent 76%),
+    linear-gradient(
+      to bottom,
+      #3d2b30 0%,
+      #6a4a4e 24%,
+      #46333a 50%,
+      #251c20 76%,
+      #11110f 100%
+    );
+}
+
+/* Keeps the chrome legible over arbitrary video — no token can guarantee contrast
+   against a moving image, so the scrim does it instead. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 15, 0.55) 0%,
+    rgba(17, 17, 15, 0) 22%,
+    rgba(17, 17, 15, 0) 45%,
+    rgba(17, 17, 15, 0.82) 100%
+  );
+}
+
+.tabs {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.tab {
+  color: rgba(244, 240, 232, 0.5);
+}
+
+.tabActive {
+  color: var(--palette-bone);
+  position: relative;
+}
+
+.tabActive::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -7px;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--palette-gold);
+}
+
+.rail {
+  position: absolute;
+  right: 12px;
+  bottom: 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.reaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.iconWell {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(17, 17, 15, 0.42);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(244, 240, 232, 0.1);
+  color: var(--palette-bone);
+  transition: transform var(--duration-instant) var(--ease-emphasis);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.xoIcon {
+  width: 22px;
+  height: 12px;
+}
+
+.count {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(244, 240, 232, 0.82);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Active state uses the token colours, which are contrast-checked in packages/design. */
+.xo.active .iconWell {
+  color: var(--palette-gold);
+}
+.xo.active .iconWell {
+  color: #e37d83;
+  border-color: rgba(227, 125, 131, 0.5);
+}
+.amen .iconWell {
+  color: var(--palette-gold-raised);
+}
+.pray.active .iconWell {
+  color: #97a98a;
+  border-color: rgba(151, 169, 138, 0.5);
+}
+.muted .iconWell {
+  color: rgba(244, 240, 232, 0.7);
+}
+
+.meta {
+  position: absolute;
+  left: 16px;
+  right: 68px;
+  bottom: 26px;
+}
+
+.topic {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--palette-near-black);
+  background: var(--palette-gold);
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.handle {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--palette-bone);
+}
+
+.name {
+  font-weight: 400;
+  color: rgba(244, 240, 232, 0.6);
+  margin-left: 4px;
+}
+
+.caption {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(244, 240, 232, 0.86);
+}
