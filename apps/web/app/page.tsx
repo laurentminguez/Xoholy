@@ -1,149 +1,218 @@
-import { AmenMark, PrayMark, Wordmark, XoMark } from "@/components/Marks";
-import { PhoneMock, type FeedCell } from "@/components/PhoneMock";
+import {
+  AmenMark,
+  ArrowMark,
+  CrossCircleMark,
+  InstagramMark,
+  PlayMark,
+  PrayMark,
+  SearchMark,
+  ShareMark,
+  TiktokMark,
+  VerifiedMark,
+  Wordmark,
+  XMark,
+  XoMark,
+  YoutubeMark,
+} from "@/components/Marks";
+import { HeroScene } from "@/components/HeroScene";
+import { FeedScreen, ForYouScreen, LiveScreen } from "@/components/PhoneMock";
 
 import styles from "./page.module.css";
 
 /**
  * The homepage.
  *
- * Structure follows the brief: hero, then the product immediately — large overlapping
- * phones showing the real feed — then the interaction vocabulary, then the mission.
- * The product is shown before it is explained, because the goal is "what is this?"
- * followed by "I want to be part of this", not a features list.
+ * Product before explanation: the hero carries the statement and a photograph, and the
+ * next screen is three real app surfaces — For You, the topic feed, and Live. The goal
+ * is "what is this?" then "I want to be part of this", not a features list.
  */
 
-const CELLS: FeedCell[] = [
+const NAV = ["Home", "Explore", "Creators", "Live", "About"] as const;
+
+/**
+ * Headline figures.
+ *
+ * IMPORTANT: these are placeholders from the design comp and XOholy has not launched.
+ * Publishing invented community numbers on a live site is a straightforward
+ * misrepresentation, so this block must either carry real figures or be removed before
+ * the site goes public. It is a single array so that removing it is one edit.
+ */
+const STATS = [
+  { label: "A global community", value: "1.2M+", unit: "People" },
+  { label: "Content shared", value: "24M+", unit: "Posts" },
+  { label: "Prayer lifted", value: "8.7M+", unit: "Prayers" },
+  { label: "Lives impacted", value: "∞", unit: "And counting" },
+] as const;
+
+const FEATURES = [
   {
-    handle: "danielortiz",
-    displayName: "Daniel Ortiz",
-    caption:
-      "5:40am. Water like glass. Read Psalm 19 out loud to nobody and meant every word of it.",
-    topic: "Life",
-    xo: 12_400,
-    amen: 8_200,
-    pray: 940,
-    treatment: 1,
+    key: "xo",
+    name: "XO",
+    blurb: "Show love. Support. Encourage.",
+    icon: <XoMark className={styles.featureXo} />,
   },
   {
-    handle: "gracechapel",
-    displayName: "Grace Chapel",
-    caption:
-      "My daughter's surgery is Thursday morning. I don't have words left, so I'm just asking.",
-    topic: "Prayer",
-    xo: 2_100,
-    amen: 5_600,
-    pray: 3_842,
-    treatment: 3,
-    leadWith: "pray",
+    key: "amen",
+    name: "Amen",
+    blurb: "Agree. Affirm. Give God the glory.",
+    icon: <AmenMark className={styles.featureIcon} />,
   },
   {
-    handle: "keziahwrites",
-    displayName: "Keziah Bell",
-    caption: "Part 3 on Romans 8 — what Paul actually means by 'no condemnation'.",
-    topic: "Teaching",
-    xo: 34_800,
-    amen: 41_200,
-    pray: 1_600,
-    treatment: 2,
+    key: "pray",
+    name: "Pray",
+    blurb: "Lift others up. We'll pray with you.",
+    icon: <PrayMark className={styles.featureIcon} />,
   },
-];
+  {
+    key: "share",
+    name: "Share",
+    blurb: "Share truth. Inspire the world.",
+    icon: <ShareMark className={styles.featureIcon} />,
+  },
+] as const;
 
 export default function Home() {
   return (
     <>
       <header className={styles.nav}>
-        <div className={`shell ${styles.navInner}`}>
-          <Wordmark className={styles.navMark} />
-          <nav className={styles.navLinks}>
-            <a href="#product">The app</a>
-            <a href="#interactions">XO, Amen, Pray</a>
-            <a href="#mission">Mission</a>
-          </nav>
-          <a className="btn btn-primary" href="#join">
-            Join XOholy
+        <div className={styles.navInner}>
+          <a href="/" aria-label="XOholy home">
+            <Wordmark className={styles.navMark} />
           </a>
+
+          <nav className={styles.navLinks} aria-label="Primary">
+            {NAV.map((item, i) => (
+              <a key={item} href="#" className={i === 0 ? styles.navLinkActive : undefined}>
+                {item}
+              </a>
+            ))}
+          </nav>
+
+          <div className={styles.navActions}>
+            <button type="button" className={styles.iconBtn} aria-label="Search">
+              <SearchMark className={styles.navIcon} />
+            </button>
+            <a href="#" className={styles.logIn}>
+              Log in
+            </a>
+            <a className="btn btn-primary" href="#join">
+              Join XOholy
+            </a>
+          </div>
         </div>
       </header>
 
       <main>
         {/* ---------------------------------------------------------------- Hero */}
         <section className={styles.hero}>
-          <div className={styles.heroGlow} aria-hidden="true" />
-          <div className={`shell ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
             <h1 className={`hero-type ${styles.heroHeadline}`}>
               Social media
               <br />
               can be <span className="accent">holy.</span>
             </h1>
 
-            <div className={styles.heroFoot}>
-              <p className={styles.heroSub}>
-                Real people. Real faith. Real life.
-                <br />
-                <span className={styles.heroWelcome}>Welcome to XOholy.</span>
-              </p>
-              <div className={styles.heroCtas}>
-                <a className="btn btn-primary" href="#join">
-                  Join XOholy
-                </a>
-                <a className="btn btn-ghost" href="#mission">
-                  Watch the vision
-                </a>
-              </div>
+            <p className={styles.heroSub}>
+              Real people. Real faith. Real life.
+              <br />
+              Welcome to <span className="accent">XOholy</span>.
+            </p>
+
+            <div className={styles.heroCtas}>
+              <a className="btn btn-primary" href="#join">
+                Join XOholy
+              </a>
+              <a className={styles.watch} href="#mission">
+                <span className={styles.watchWell}>
+                  <PlayMark className={styles.watchIcon} />
+                </span>
+                Watch the vision
+              </a>
             </div>
+
+            <dl className={styles.stats}>
+              {STATS.map((stat) => (
+                <div key={stat.label} className={styles.stat}>
+                  <dt className={styles.statLabel}>{stat.label}</dt>
+                  <dd className={styles.statValue}>
+                    {stat.value}
+                    <span className={styles.statUnit}>{stat.unit}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          <div className={styles.heroPhones} aria-hidden="true">
-            <PhoneMock cell={CELLS[1]!} tab="Following" className={styles.phoneBack} />
-            <PhoneMock cell={CELLS[0]!} className={styles.phoneFront} />
-            <PhoneMock cell={CELLS[2]!} tab="Live" className={styles.phoneBack} />
+          {/*
+           * The hero image. HeroScene is a deliberate silhouette composition standing in
+           * for the photograph the brief calls for — see its file header for how to swap
+           * in the real still once it exists.
+           */}
+          <div className={styles.heroMedia} aria-hidden="true">
+            <HeroScene />
+            <div className={styles.heroFade} />
+            <ol className={styles.slides}>
+              {["01", "02", "03", "04"].map((n, i) => (
+                <li key={n} className={i === 0 ? styles.slideActive : styles.slide}>
+                  {n}
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
-        {/* ------------------------------------------------------------- Product */}
-        <section id="product" className={`section ${styles.product}`}>
-          <div className="shell">
-            <div className={`reveal ${styles.productHead}`}>
-              <p className="eyebrow">The feed</p>
-              <h2 className="display-type">
-                Everything you scroll.
-                <br />
-                None of what you don&rsquo;t.
-              </h2>
-              <p className="lede">
-                Faith, life, music, family, culture, business, sport, testimonies, worship,
-                teaching, comedy. Not a Christian corner of a bigger app — the whole app.
-                Share a video in from anywhere the way you already cross-post, and it lands
-                somewhere it belongs.
-              </p>
+        {/* ------------------------------------------------------ Built different */}
+        <section id="product" className={`surface-light ${styles.built}`}>
+          <div className={styles.builtGrid}>
+            <div className={styles.builtLeft}>
+              <h2 className={styles.builtTitle}>Built different.</h2>
+
+              <ul className={styles.features}>
+                {FEATURES.map((f) => (
+                  <li key={f.key} className={styles.feature}>
+                    <span className={`${styles.featureWell} ${styles[`well_${f.key}`]}`}>
+                      {f.icon}
+                    </span>
+                    <span>
+                      <span className={styles.featureName}>{f.name}</span>
+                      <span className={styles.featureBlurb}>{f.blurb}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <a className={styles.textLink} href="#interactions">
+                See all features <ArrowMark className={styles.textLinkIcon} />
+              </a>
             </div>
 
-            <ul className={styles.topics}>
-              {[
-                "Faith",
-                "Life",
-                "Music",
-                "Family",
-                "Culture",
-                "Business",
-                "Sports",
-                "Testimonies",
-                "Worship",
-                "Teaching",
-                "Comedy",
-              ].map((topic) => (
-                <li key={topic} className={styles.topicChip}>
-                  {topic}
-                </li>
-              ))}
-            </ul>
+            <div className={styles.phones}>
+              <ForYouScreen />
+              <FeedScreen />
+              <LiveScreen />
+            </div>
+
+            <div className={styles.builtRight} id="mission">
+              <p className={styles.missionEyebrow}>Our mission</p>
+              <h2 className={styles.missionTitle}>
+                To see a generation connected through truth, love and the gospel.
+              </h2>
+              <p className={styles.missionBody}>
+                We&rsquo;re not just building an app.
+                <br />
+                We&rsquo;re building a movement.
+              </p>
+              <a className={styles.textLink} href="#join">
+                Join the movement <ArrowMark className={styles.textLinkIcon} />
+              </a>
+            </div>
           </div>
         </section>
 
         {/* -------------------------------------------------------- Interactions */}
-        <section id="interactions" className={`section surface-light ${styles.interactions}`}>
+        <section id="interactions" className={`section ${styles.vocab}`}>
           <div className="shell">
-            <div className={`reveal ${styles.interactionsHead}`}>
+            <div className={`reveal ${styles.vocabHead}`}>
               <p className="eyebrow">The vocabulary</p>
               <h2 className="display-type">
                 We didn&rsquo;t ship
@@ -189,41 +258,10 @@ export default function Home() {
                 <p className={styles.cardCount}>3,842 PRAYING</p>
                 <p className={styles.cardBody}>
                   Not 3,842 likes. Three thousand eight hundred and forty-two people
-                  actually praying. Save any request to a private list that is between you
-                  and God.
+                  actually praying. Save any request to a private list that is between
+                  you and God.
                 </p>
               </article>
-            </div>
-          </div>
-        </section>
-
-        {/* ------------------------------------------------------------- Mission */}
-        <section id="mission" className={`section ${styles.mission}`}>
-          <div className="shell">
-            <h2 className={`display-type reveal ${styles.missionHeadline}`}>
-              A generation
-              <br />
-              connected through
-              <br />
-              <span className="accent">truth, love &amp;</span>
-              <br />
-              the gospel.
-            </h2>
-
-            <div className={`reveal ${styles.missionBody}`}>
-              <p className={styles.missionLede}>
-                We&rsquo;re not just building an app. We&rsquo;re building a movement.
-              </p>
-              <p className={styles.missionNote}>
-                Every other feed is tuned to hold your attention for as long as it can.
-                Ours is tuned for something else — what you save, what you send someone,
-                who you follow, what you come back for. Watch time still counts. It just
-                doesn&rsquo;t get to be the only thing that does.
-              </p>
-              <p className={styles.missionNote}>
-                You should leave XOholy encouraged, challenged, or closer to Christ. Not
-                emptied out.
-              </p>
             </div>
           </div>
         </section>
@@ -257,19 +295,40 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <div className={`shell ${styles.footerInner}`}>
-          <Wordmark className={styles.footerMark} />
-          <nav className={styles.footerLinks}>
-            <a href="/content-standards">Content Standards</a>
-            <a href="/terms">Terms</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/copyright">Copyright &amp; DMCA</a>
+        <div className={styles.footerInner}>
+          <div className={styles.footerBrand}>
+            <Wordmark className={styles.footerMark} />
+            <span className={styles.footerTag}>Social media can be holy.</span>
+          </div>
+
+          <nav className={styles.footerLinks} aria-label="Footer">
+            <a href="#">About</a>
+            <a href="#">Creators</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+            <a href="#">Safety</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
           </nav>
-          <p className={styles.footerNote}>
-            Shared posts play in their original platform&rsquo;s player. Creators keep the
-            view, the watermark, and the credit.
-          </p>
+
+          <div className={styles.social}>
+            <a href="#" aria-label="XOholy on Instagram"><InstagramMark className={styles.socialIcon} /></a>
+            <a href="#" aria-label="XOholy on TikTok"><TiktokMark className={styles.socialIcon} /></a>
+            <a href="#" aria-label="XOholy on YouTube"><YoutubeMark className={styles.socialIcon} /></a>
+            <a href="#" aria-label="XOholy on X"><XMark className={styles.socialIcon} /></a>
+            <a href="#" aria-label="XOholy community"><CrossCircleMark className={styles.socialIcon} /></a>
+          </div>
+
+          <p className={styles.copyright}>© 2026 XOholy</p>
         </div>
+
+        <p className={styles.footerNote}>
+          Shared posts play in their original platform&rsquo;s player. Creators keep the
+          view, the watermark, and the credit.{" "}
+          <a href="/content-standards" className={styles.footerNoteLink}>
+            Content Standards <VerifiedMark className={styles.footerNoteIcon} />
+          </a>
+        </p>
       </footer>
     </>
   );

@@ -1,0 +1,56 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/*
+ * The photograph layer.
+ *
+ * TO REPLACE with the real still: set `background-image: url(...)` here and delete the
+ * <svg> from HeroScene.tsx. Keep `background-position` weighted toward the upper right
+ * so the subject sits clear of the headline column, which the .heroFade gradient in
+ * page.module.css darkens.
+ */
+.photo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(30% 26% at 58% 8%, rgba(255, 240, 208, 0.9) 0%, rgba(255, 216, 160, 0.28) 38%, transparent 70%),
+    radial-gradient(22% 18% at 78% 4%, rgba(255, 232, 190, 0.55) 0%, transparent 68%),
+    radial-gradient(70% 60% at 55% 34%, #c08a4c 0%, #7c5730 44%, transparent 80%),
+    linear-gradient(172deg, #35281b 0%, #241c15 44%, #15130f 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Two soft light shafts from the rig above the stage. */
+.beams {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(196deg, rgba(255, 226, 176, 0.2) 0%, transparent 34%),
+    linear-gradient(166deg, rgba(255, 232, 190, 0.14) 0%, transparent 30%);
+  mix-blend-mode: screen;
+}
+
+.crowd {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Atmospheric haze low in the frame, so the crowd sits in air rather than on a flat. */
+.haze {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(196, 142, 82, 0.16) 66%,
+    rgba(17, 17, 15, 0.4) 88%,
+    rgba(17, 17, 15, 0.72) 100%
+  );
+  pointer-events: none;
+}
