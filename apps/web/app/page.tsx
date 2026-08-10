@@ -31,8 +31,8 @@ import styles from "./page.module.css";
 const NAV = [
   { label: "Home", href: "#top" },
   { label: "Experience", href: "#product" },
+  { label: "Why XOholy", href: "#why" },
   { label: "Vocabulary", href: "#interactions" },
-  { label: "Mission", href: "#mission" },
 ] as const;
 
 const PRINCIPLES = [
@@ -66,6 +66,24 @@ const FEATURES = [
     name: "Share",
     blurb: "Share truth. Inspire the world.",
     icon: <ShareMark className={styles.featureIcon} />,
+  },
+] as const;
+
+const DIFFERENCE = [
+  {
+    number: "01",
+    title: "Discover what gives life",
+    body: "Find creators, stories and conversations that bring faith into the whole of real life—not only Sunday.",
+  },
+  {
+    number: "02",
+    title: "Respond with meaning",
+    body: "XO, Amen and Pray turn passive reactions into encouragement, affirmation and a real commitment to care.",
+  },
+  {
+    number: "03",
+    title: "Carry truth forward",
+    body: "Share what matters beyond the feed while creators keep their voice, attribution and credit.",
   },
 ] as const;
 
@@ -194,17 +212,54 @@ export default function Home() {
               </figure>
               <p className={styles.missionEyebrow}>Our mission</p>
               <h2 className={styles.missionTitle}>
-                To see a generation connected through truth, love and the gospel.
+                To build a social platform where a generation encounters Jesus through
+                truth, community and everyday life.
               </h2>
               <p className={styles.missionBody}>
-                We&rsquo;re not just building an app.
-                <br />
-                We&rsquo;re building a movement.
+                Not a Christian copy of what already exists. A healthier culture built
+                around faith, meaningful connection and creators who carry the gospel
+                forward.
               </p>
               <a className={styles.textLink} href="#join">
                 Join the movement <ArrowMark className={styles.textLinkIcon} />
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* ----------------------------------------------------------- Why XOholy */}
+        <section id="why" className={`section ${styles.why}`}>
+          <div className={`shell ${styles.whyInner}`}>
+            <div className={styles.whyIntro}>
+              <p className="eyebrow">Why XOholy</p>
+              <h2 className={`display-type ${styles.whyTitle}`}>
+                Social media shapes
+                <br />
+                what we <span className="accent">love.</span>
+              </h2>
+            </div>
+
+            <div className={styles.whyStory}>
+              <p className={styles.whyLead}>
+                XOholy is a social platform where Christians share real life, discover
+                faith-filled creators, pray with one another and carry the gospel into
+                culture.
+              </p>
+              <p className={styles.whyContrast}>
+                Social media was built for attention. XOholy is being built for
+                connection, encouragement, truth and transformation.
+              </p>
+            </div>
+
+            <ol className={styles.difference}>
+              {DIFFERENCE.map((item) => (
+                <li key={item.number} className={styles.differenceItem}>
+                  <span className={styles.differenceNumber}>{item.number}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -269,8 +324,8 @@ export default function Home() {
           <div className="shell">
             <h2 className="display-type">Faith lives here.</h2>
             <p className="lede">
-              XOholy is in build. Leave your email and we&rsquo;ll bring you in with the
-              first creators.
+              Join early access and help shape a social platform centered on real faith,
+              meaningful community and creators worth following.
             </p>
             <form className={styles.form} action="#" method="post">
               <label className={styles.srOnly} htmlFor="email">

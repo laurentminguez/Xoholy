@@ -525,6 +525,128 @@
   line-height: var(--leading-relaxed);
 }
 
+/* --- Why XOholy ------------------------------------------------------------ */
+
+.why {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(165, 139, 84, 0.12), transparent 30%),
+    var(--palette-near-black);
+}
+
+.why::before {
+  content: "XO";
+  position: absolute;
+  right: -0.04em;
+  top: -0.2em;
+  font-family: var(--font-display);
+  font-size: clamp(180px, 32vw, 500px);
+  line-height: 1;
+  color: rgba(244, 240, 232, 0.018);
+  pointer-events: none;
+}
+
+.whyInner {
+  position: relative;
+  display: grid;
+  gap: clamp(36px, 6vw, 80px);
+}
+
+.whyTitle {
+  max-width: 11ch;
+}
+
+.whyStory {
+  max-width: 58ch;
+}
+
+.whyLead {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: clamp(21px, 2.35vw, 34px);
+  font-weight: 650;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: var(--palette-bone);
+}
+
+.whyContrast {
+  margin: var(--space-lg) 0 0;
+  padding-left: var(--space-lg);
+  border-left: 2px solid var(--palette-gold);
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: var(--leading-relaxed);
+  color: rgba(244, 240, 232, 0.68);
+}
+
+.difference {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-hairline);
+}
+
+.differenceItem {
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.differenceNumber {
+  display: block;
+  margin-bottom: var(--space-lg);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-widest);
+  color: var(--palette-gold);
+}
+
+.differenceItem h3 {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.2vw, 34px);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.differenceItem p {
+  max-width: 38ch;
+  margin: 0;
+  line-height: var(--leading-relaxed);
+  color: rgba(244, 240, 232, 0.62);
+}
+
+@media (min-width: 820px) {
+  .whyInner {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .difference {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .differenceItem {
+    padding: var(--space-xl);
+    border-right: 1px solid var(--color-hairline);
+    border-bottom: 0;
+  }
+
+  .differenceItem:first-child {
+    padding-left: 0;
+  }
+
+  .differenceItem:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
 /* --- Vocabulary ------------------------------------------------------------ */
 
 .vocab {
